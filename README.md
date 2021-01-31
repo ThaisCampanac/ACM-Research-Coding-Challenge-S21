@@ -22,3 +22,8 @@ Genome analysis is the identification of genomic features such as gene expressio
 **You may use any programming language you feel most comfortable. We recommend Python because it is the easiest to implement. You're allowed to use any library you want to implement this**, just document which ones you used in this README file. Try to complete this as soon as possible.
 
 Regardless if you can or cannot answer the question, provide a short explanation of how you got your solution or how you think it can be solved in your README.md file. However, we highly recommend giving the challenge a try, you just might learn something new!
+
+
+## Answer
+
+For this question, I have decided to code in python while using a special module called [GenomeDiagram](biopython.org/DIST/docs/GenomeDiagram/userguide.pdf). This module will eleveate the amount of hard coding I will have to do to create a circular genome map (the module uses two packages and installation is in the pdf). 
