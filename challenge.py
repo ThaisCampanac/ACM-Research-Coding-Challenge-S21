@@ -1,4 +1,4 @@
-from Bio import SeqIO
+from Bio import SeqIO, GenBank
 from Bio.Graphics import GenomeDiagram
 
 content = []
@@ -11,9 +11,12 @@ def getFile():
     print(record)
     print(record.seq)
 
-    gd_diagram = GenomeDiagram.Diagram("Tomato curly stunt virus")
-    gd_track_for_features = gd_diagram.new_track(1, name="Annotated Features")
+    gd_diagram = GenomeDiagram.Diagram(record.id)
+    gd_track_for_features = gd_diagram.new_track(2, name="Annotated Features")
+    gd_track_for_content = gd_diagram.new_track(1, name ="Annotated Content")
     gd_feature_set = gd_track_for_features.new_set()
+    gd_content_set = gd_track_for_content.new_set()
+    
 
     for feature in record.features:
         if feature.type != "gene":
