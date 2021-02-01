@@ -13,7 +13,8 @@ def getFile():
     gd_diagram = GenomeDiagram.Diagram(record.id)
     gd_track_for_features = gd_diagram.new_track(1, name="Annotated Features")
     gd_feature_set = gd_track_for_features.new_set()
-    
+    gd_track_for_content = gd_diagram.new_track(4, name= "Annotated Content")
+    gd_content_set = gd_track_for_content.new_set()
 
     #adding the features to the gd_diagram
     for feature in record.features:
@@ -42,15 +43,15 @@ def getFile():
             index = record.seq.find(x, start=index)
             if index == -1:
                 break
-        feature = SeqFeature(FeatureLocation(index, index + len(x)))
-        gd_feature_set.add_feature(
-            feature,
-            color=colors.green,
-            name = x,
-            label=True,
-            label_size=10,
-        )
-        index += len(x)
+            feature = SeqFeature(FeatureLocation(index, index + len(x)))
+            gd_content_set.add_feature(
+                feature,
+                color=colors.green,
+                name = x,
+                label=True,
+                label_size=5,
+            )
+            index += len(x)
         
 
     #making the circular diagram
@@ -60,7 +61,7 @@ def getFile():
         pagesize=(20 * cm, 20 * cm),
         start=10,
         end = len(record),
-        circle_core=.7
+        circle_core=.8
     )
 
     #writing the diagram to all formats asked by the client
