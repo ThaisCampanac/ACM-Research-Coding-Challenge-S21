@@ -1,20 +1,37 @@
+from Bio import SeqIO
+from Bio.Graphics import GenomeDiagram
+
 content = []
 name_to_search = 'ORGANISM'
 version_to_search = 'VERSION'
 list_of_features = []
 
 def getFile():
-    f = open("Genome.gb", "r")
+    record = SeqIO.read("Genome.gb", "genbank")
+    print(record)
+    print(record.seq)
 
-    f1 = f.readlines()
+    gd_diagram = GenomeDiagram.Diagram("Tomato curly stunt virus")
+    gd_track_for_features = gd_diagram.new_track(1, name="Annotated Features")
+    gd_feature_set = gd_track_for_features.new_set()
 
-    for x in f1:
-        content.append(x.strip())
-        if name_to_search in x:
-            list_of_features.append(x.strip())
-        if version_to_search in x:
-            list_of_features.append(x.strip())
-    print(list_of_features)
+    for feature in record.features:
+        if feature.type != "gene":
+            continue
+        if len(gd_feature_set)%2 == 0:
+            color = colors.blue
+        else:
+            color = colors.lightblue
+        gd_feature_set.add_feature(feature, color=color, label_size=10, label_angle=0)
+
+    gd_diagram.draw(
+        format="circular",
+        circular=True,
+        pagesize=(20, 20),
+        start=10,
+        end = len(record),
+        circle_core=.7
+    )
 
 
 def main():

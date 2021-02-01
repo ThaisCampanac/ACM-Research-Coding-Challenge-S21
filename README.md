@@ -26,6 +26,6 @@ Regardless if you can or cannot answer the question, provide a short explanation
 
 ## Answer
 
-For this question, I have decided to code in python while using a special module called [GenomeDiagram](biopython.org/DIST/docs/GenomeDiagram/userguide.pdf). This module will eleveate the amount of hard coding I will have to do to create a circular genome map (the module uses two packages and installation is in the pdf which were installed through pip). 
+For this question, I have decided to code in python while using a special module called [GenomeDiagram](biopython.org/DIST/docs/GenomeDiagram/userguide.pdf). This module will eleveate the amount of hard coding I will have to do to create a circular genome map (the module uses two packages and installation is in the pdf which were installed through pip). I later found out that GenomeDiagram is now apart of BioPython, so just install BioPython for the program to work.
 
-In my program, I tried to first get the necessary information for the GenomeDiagram program and other later information like name and version (however, based on my research there were no other information that I could compare the virus to in order to create other feature tracks). I then after used the GenomeDiagram module to create a circular diagram with the sequences of DNA of the virus which was given. I lastly went back into python to add other necessary information that was given. 
+In my program, I used the SeqIO.read function to get all of the necessary information from the genbank file. This I start creating the GenomeDiagram with all of the features of the virus.
