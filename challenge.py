@@ -58,10 +58,10 @@ def getFile():
     gd_diagram.draw(
         format="circular",
         circular=True,
-        pagesize=(20 * cm, 20 * cm),
-        start=10,
+        pagesize=(60 * cm, 60 * cm),
+        start=0,
         end = len(record),
-        circle_core=.8
+        circle_core=.5
     )
 
     #writing the diagram to all formats asked by the client
