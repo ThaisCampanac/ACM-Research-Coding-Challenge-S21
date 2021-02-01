@@ -23,8 +23,35 @@ def getFile():
             color = colors.blue
         else:
             color = colors.lightblue
-        gd_feature_set.add_feature(feature, color=color, label_size=10, label_angle=0)
+        gd_feature_set.add_feature(feature, color=color, label=True, label_size=15, label_angle=0)
 
+    #adding the DNA sequence to the diagram
+    list_of_dna = []
+    index = 1
+    dna = ""
+    for seq in record.seq:
+        dna = dna + seq
+        if (index)%10 == 0:
+            list_of_dna.append(dna)
+            dna = ""
+        index = index + 1
+
+    for x in list_of_dna:
+        index = 0
+        while True:
+            index = record.seq.find(x, start=index)
+            if index == -1:
+                break
+        feature = SeqFeature(FeatureLocation(index, index + len(x)))
+        gd_feature_set.add_feature(
+            feature,
+            color=colors.green,
+            name = x,
+            label=True,
+            label_size=10,
+        )
+        index += len(x)
+        
 
     #making the circular diagram
     gd_diagram.draw(
@@ -38,8 +65,6 @@ def getFile():
 
     #writing the diagram to all formats asked by the client
     gd_diagram.write("genome_circular_diagram.png", "PNG")
-    gd_diagram.write("genome_circular_diagram.jpeg", "JPEG")
-    gd_diagram.write("genome_circular_diagram.jpg", "JPG")
 
 
 def main():
